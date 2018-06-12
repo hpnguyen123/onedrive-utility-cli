@@ -3,8 +3,8 @@ onedrive-utility-cli
 
 
 
-.. image:: https://travis-ci.org/pvnguyen123/onedrive-utility-cli.svg?branch=master
-   :target: https://travis-ci.org/pvnguyen123/onedrive-utility-cli
+.. image:: https://travis-ci.org/hpnguyen123/onedrive-utility-cli.svg?branch=master
+   :target: https://travis-ci.org/hpnguyen123/onedrive-utility-cli
 
 
 Requirements
@@ -20,7 +20,7 @@ Keep track of App Client Id and Client Secret.
 
 Build
 -------
-1. Git Clone https://github.com/pvnguyen123/onedrive-utility-cli.git
+1. Git Clone https://github.com/hpnguyen123/onedrive-utility-cli.git
 2. cd onedrive-utility-cli
 3. python3 -m venv venv
 4. source venv/bin/activate
@@ -29,11 +29,14 @@ Build
 
 Run
 -------
-li-onedrive -h
-
 li-onedrive init --client-id [clientid] --client-secret [secret]
 
-li-onedrive download '/attachments/somefile.csv'
+Commands
+-------
+1. init          Initialize CLI with application id and secret
+2. authenticate  Reauthenticate user using Azure Oauth
+3. download      Download a file from OneDrive
+4. upload        Upload a file to OneDrive
 
 License
 -------

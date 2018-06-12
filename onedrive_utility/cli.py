@@ -38,6 +38,8 @@ def cli(ctx):
 @click.option('--client-id', required=True, help='Application id')
 @pass_context
 def init(ctx, client_id, client_secret):
+    ''' Initialize CLI with application id and secret
+    '''
     ctx.client_id = client_id
     ctx.client_secret = client_secret
     ctx.save()
@@ -49,26 +51,46 @@ def init(ctx, client_id, client_secret):
 @cli.command()
 @pass_context
 def authenticate(ctx):
+    ''' Reauthenticate user using Azure Oauth
+    '''
     client = Client(ctx.client_id)
     client.authenticate(cache=ctx.session_cache, client_secret=ctx.client_secret)
 
 
 @cli.command()
-@click.option('--out', required=False, default="download.out", help='Output file name')
+@click.option('--file_name', required=False, help='Download file name')
 @click.option('-p', required=False, default=False, is_flag=True, help='Print data to output stream')
 @click.argument('path', required=True)
 @pass_context
-def download(ctx, path, out, p):
+def download(ctx, path, file_name, p):
+    ''' Download a file from OneDrive
+    '''
     client = Client(ctx.client_id)
     client.load_session(ctx.session_cache)
     onedrive_client = client.get_onedrive_client()
-    onedrive_client.item(drive='me', path=path).download(out)
+
+    file_name = file_name or os.path.basename(path)
+    onedrive_client.item(drive='me', path=path).download(file_name)
 
     if p:
-        with open(out) as file:
+        with open(file_name) as file:
             click.echo(file.read())
-    else:
-        click.echo('output file: {}'.format(out))
+
+
+@cli.command()
+@click.option('--destination', '-d', required=True, help='Destination directory on OneDrive')
+@click.option('--file_name', required=False, help='Destination filename')
+@click.argument('upload_file', required=True)
+@pass_context
+def upload(ctx, destination, file_name, upload_file):
+    ''' Upload a file to OneDrive
+    '''
+    client = Client(ctx.client_id)
+    client.load_session(ctx.session_cache)
+    onedrive_client = client.get_onedrive_client()
+
+    file_name = file_name or os.path.basename(upload_file)
+    onedrive_client.item(drive='me', path=destination).children[file_name].upload(upload_file)
 
 
 def main():
