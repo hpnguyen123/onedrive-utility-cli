@@ -20,8 +20,10 @@ Build
 -------
 1. Git Clone https://github.com/pvnguyen123/onedrive-utility-cli.git
 2. cd onedrive-utility-cli
-3. pip install -r requirements.txt
-4. pip install -e .
+3. python3 -m venv venv
+4. source venv/bin/activate
+5. pip install -r requirements.txt
+6. pip install -e .
 
 Run
 -------
