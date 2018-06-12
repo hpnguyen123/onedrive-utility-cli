@@ -27,15 +27,7 @@ Run
 -------
 li-onedrive -h
 
-Usage: li-onedrive [OPTIONS] COMMAND [ARGS]...
-Options:
-  -h, --help  Show this message and exit.
-Commands:
-  authenticate
-  download
-  init
-
-li-onedrive init --client-id <clientid> --client-secret <secret>
+li-onedrive init --client-id [clientid] --client-secret [secret]
 
 li-onedrive download '/attchment/somefile.csv'
 
