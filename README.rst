@@ -9,12 +9,14 @@ onedrive-utility-cli
 
 Requirements
 -------
-1. Python 3.5
+1. Python3
 2. Pip
 3. VirtualEnv
-4. Register an App @ Microsoft App Registration Portal <https://apps.dev.microsoft.com/>.
-Be sure to add file read/write access to your app permission. Keep track of App Client Id
-and Client Secret, which is needed later.
+4. Microsoft Business Account
+
+Register an App @ Microsoft App Registration Portal <https://apps.dev.microsoft.com/>.
+Be sure to add file read/write access to your app permission, set callback URL as <http://localhost:8080>.
+Keep track of App Client Id and Client Secret.
 
 Build
 -------
@@ -31,7 +33,7 @@ li-onedrive -h
 
 li-onedrive init --client-id [clientid] --client-secret [secret]
 
-li-onedrive download '/attchment/somefile.csv'
+li-onedrive download '/attachments/somefile.csv'
 
 License
 -------
